@@ -2,6 +2,8 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const axios = require("axios");
+const cors = require("cors");
+app.use(cors());
 
 const API_KEY = process.env.API_KEY;
 const apiUrl = "https://api.openai.com/v1/chat/completions";
@@ -32,15 +34,16 @@ app.get("/getPhrases/:language", async (req, res) => {
     messages: [
       {
         role: "user",
-        content: `Suggest 9 phrases simple ${language} and english translate. Only output JSON and nothing else`,
+        content: `Suggest 3 phrases simple ${language} and english translate. Only output JSON and nothing else`,
       },
     ],
     temperature: 0.7,
   };
 
-  const response = await getResponse(requestData);
-  const responseObject = JSON.parse(response);
-  res.json({ responseObject });
+  let response = await getResponse(requestData);
+  response = response.replace("\n", "");
+
+  res.json({ response });
 });
 
 // Route to get a response based on an ID
