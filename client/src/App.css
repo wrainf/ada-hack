@@ -1,20 +1,20 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-.App-header {
-  background-color: #282c34;
+* {
+  font-weight: bold;
+}
+
+.App {
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,15 +24,153 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.dropdown {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 150px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style the select element */
+select {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid white;
+  margin: 0.5rem 0;
+  outline: none;
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+}
+
+/* Style the option elements */
+option {
+  padding: 8px;
+}
+
+/* Button Styles */
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+}
+
+.Learn {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  height: 100vh;
+  background-image: url(./images/map.png);
+  background-size: cover; /* Adjust as needed, 'cover' will make the image cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
+}
+
+.Phrase {
+  width: 50vw;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  color: black;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.Phrase-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.Phrase-big {
+  font-size: 2rem;
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: 36px; /* Set the font size */
+  color: #ffffff; /* Set the text color */
+  text-align: center; /* Center the text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow */
+  margin-bottom: 20px;
+}
+
+.Fight {
+  position: relative;
+  padding: 1rem;
+  background-image: url(./images/battle.png);
+  width: 80vw;
+  max-width: 40rem;
+  background-size: cover; /* Adjust as needed, 'cover' will make the image cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat;
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Fight input {
+  width: 90%;
+  padding: 1rem;
+  background-color: #004f69;
+  border: 2px solid white;
+  color: white;
+}
+
+.Fight input::placeholder {
+  color: white;
+}
+
+.question {
+  font-size: 2rem;
+  color: black;
+  font-weight: bold;
+}
+
+.enemy,
+.ash {
+  position: absolute;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.enemy {
+  top: 1rem;
+  right: 0;
+}
+
+.ash {
+  bottom: 6rem;
+  left: 0;
+  animation-delay: 0.3ms;
+}
+
+.explain {
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.outcome {
+  font-size: 3rem;
+  z-index: 9999;
+  color: #000000;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.Phrase:hover {
+  padding: 1rem 5rem;
+  cursor: pointer;
 }

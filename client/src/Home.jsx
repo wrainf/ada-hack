@@ -1,4 +1,5 @@
 import { useState } from "react";
+import myImage from "./images/pokemonlogo.png";
 
 const Home = ({onLanguageChange}) => {
   const [value, setValue] = useState("malay")
@@ -14,7 +15,9 @@ const Home = ({onLanguageChange}) => {
   };
 
   return (<div>   
+    <img src={myImage} alt="" />
     <h2>Welcome to LanguageMon</h2>
+    
     <h2>Select Your Preferred Language</h2>
     <form>
         <label htmlFor="language">Choose a Language:</label>
@@ -28,7 +31,7 @@ const Home = ({onLanguageChange}) => {
             
         </select>
 
-        <button onClick={handleClick}>button</button>
+        <button onClick={handleClick}>Select</button>
     </form> 
   </div>)
 }

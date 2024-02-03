@@ -50,8 +50,9 @@ app.get("/getPhrases/:language", async (req, res) => {
 app.get("/getResponse", async (req, res) => {
   const answer = req.query.answer;
   const question = req.query.question;
+  console.log(question, answer);
   const requestData = {
-    model: "gpt-3.5-turbo",
+    model: "gpt-4",
     messages: [
       {
         role: "user",

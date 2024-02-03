@@ -1,7 +1,8 @@
 const Phrase = ({english, foreign}) => {
   return (
-    <div>
+    <div className="Phrase">
       <div>{english}</div>
+      <div className="Phrase-big">→</div>
       <div>{foreign}</div>
     </div>
   )

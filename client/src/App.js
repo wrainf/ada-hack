@@ -1,7 +1,9 @@
 import "./App.css";
 import Home from "./Home";
 import Learn from "./Learn";
-import Fight from "./Fight";
+
+import "./App.css";
+
 import { useState } from "react";
 
 const App = () => {
