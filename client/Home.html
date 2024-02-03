@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        min-height: 100vh;
+        margin-top: 150px;
+        font-family: Arial, sans-serif;
+        
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    main {
+        margin-top: 10px;
+        
+        
+        
+    }
+
+    footer {
+        text-align: center;
+        width: 100%;
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Our Website</h1>
+  </header>
+
+  <main>
+    <section>
+        <h2>Select Your Preferred Language</h2>
+        <form action="process_language.php" method="post">
+            <label for="language">Choose a Language:</label>
+            <select name="language" id="language">
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+                <option value="german">German</option>
+                <option value="chinese">Chinese</option>
+                <option value="japanese">Japanese</option>
+                <option value="malay">Malay</option>
+                <!-- Add more language options as needed -->
+            </select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+  </footer>
+  
+</body>
+</html>

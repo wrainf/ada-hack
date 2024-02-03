@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Example with Back to Top</title>
+    <style>
+        body {
+            font-size: small;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            font-size: small;
+            border-bottom: 1px solid #ccc;
+            margin-top: 80px;
+            
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="section1">
+        
+        <p>This is the content of Section 1.</p>
+        <button onclick="scrollToSection('section2')">Scroll to Section 2</button>
+        <button onclick="scrollToSection('section3')">Scroll to Section 3</button>
+    </section>
+
+    <section id="section2">
+        
+        <p>This is the content of Section 2.</p>
+        <button onclick="scrollToSection('section1')">Scroll to Section 1</button>
+        <button onclick="scrollToSection('section3')">Scroll to Section 3</button>
+        <button class="back-to-top" onclick="scrollToTop()">Back to page 1</button>
+    </section>
+
+    <section id="section3">
+        
+        <p>This is the content of Section 3.</p>
+        <button onclick="scrollToSection('section1')">Scroll to Section 1</button>
+        <button onclick="scrollToSection('section2')">Scroll to Section 2</button>
+        <button class="back-to-top" onclick="scrollToTop()">Back to page 1</button>
+    </section>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide "Back to Top" button based on scroll position
+        window.onscroll = function () {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+
+</html>

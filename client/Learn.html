@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      min-height: 100vh;
+      margin-top: 80px;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>List of Items</h1>
+
+    <ul id="itemList">
+        <!-- List items will be dynamically added here by JavaScript -->
+    </ul>
+
+    <script>
+        // Fetch the JSON data
+        fetch('data.json') //need file name
+            .then(response => response.json())
+            .then(data => {
+                // Get the ul element
+                const itemList = document.getElementById('itemList');
+
+                // Loop through the data and create list items
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = `${item.id}: ${item.name}`;
+                    itemList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+      </script>
+  
+</body>
+</html>

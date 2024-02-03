@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fafafa;
+        align-self: stretch;
+        width: 100%;
+    }
+
+    .chat-container {
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        ;
+    }
+
+    .chat-header {
+        background-color: #3897f0;
+        color: #fff;
+        padding: 10px;
+        
+        font-size: 1.2em;
+    }
+
+    .chat-body {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .message {
+        padding: 10px;
+        margin: 5px 0;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .user-message {
+        background-color: #e0f3ff;
+        border-radius: 12px 12px 0 12px;
+        margin-left: auto;
+        float: right;
+    }
+
+    .bot-message {
+        background-color: #f0f0f0;
+        border-radius: 12px 12px 12px 0;
+    }
+
+    .message-text {
+        margin-left: 10px;
+    }
+
+    .chat-input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: none;
+        border-top: 1px solid #ccc;
+        outline: none;
+    }
+</style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="./script.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+
+  <audio loop autoplay>
+      <source src="PokemonAudio.mp3" type="audio/mp3">
+      Your browser does not support the audio tag.
+  </audio>
+
+  <div class="chat-container">
+    <div class="chat-header">Instagram-style Chat</div>
+    <div class="chat-body" id="chat-body">
+        <div class="message bot-message">
+            <div class="message-text">Hello! How can I help you today?</div>
+        </div>
+    </div>
+    <input type="text" class="chat-input" id="user-input" placeholder="Type your message...">
+</div>
+
+<script>
+    const chatBody = document.getElementById('chat-body');
+    const userInput = document.getElementById('user-input');
+
+    userInput.addEventListener('keyup', function (event) {
+        if (event.key === 'Enter') {
+            sendMessage(userInput.value, 'user');
+            userInput.value = '';
+            // Simulate a bot response (replace this with actual logic)
+            setTimeout(() => sendMessage("I'm a simple bot!", 'bot'), 500);
+        }
+    });
+
+    function sendMessage(message, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+
+        if (sender === 'user') {
+            messageDiv.classList.add('user-message');
+        } else {
+            messageDiv.classList.add('bot-message');
+        }
+
+        messageDiv.innerHTML = `<div class="message-text">${message}</div>`;
+        chatBody.appendChild(messageDiv);
+        // Scroll to the bottom to show the latest message
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
