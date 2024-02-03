@@ -9,8 +9,21 @@
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 * {
   font-weight: bold;
+}
+
+.Home * {
+  animation: fadeIn 1s ease-in-out;
 }
 
 .App {
@@ -74,7 +87,6 @@ button {
 
 .Phrase {
   width: 50vw;
-  background-color: white;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
@@ -83,6 +95,8 @@ button {
   color: black;
   justify-content: center;
   transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .Phrase-container {

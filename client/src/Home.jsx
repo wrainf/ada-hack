@@ -14,7 +14,7 @@ const Home = ({onLanguageChange}) => {
     setValue(event.target.value);
   };
 
-  return (<div>   
+  return (<div className="Home">   
     <img src={myImage} alt="" />
     <h2>Welcome to LanguageMon</h2>
     
