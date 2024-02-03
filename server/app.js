@@ -1,28 +1,64 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
+const axios = require("axios");
 
-// Sample phrases data
-const phrasesData = [
-  { id: 1, malay: "Apa khabar?", english: "How are you?" },
-  { id: 2, malay: "Terima kasih", english: "Thank you" },
-  // Add more phrases as needed
-];
+const API_KEY = process.env.API_KEY;
+const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+const getResponse = async (requestData) => {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${API_KEY}`,
+  };
+
+  try {
+    const response = await axios.post(apiUrl, requestData, { headers });
+    console.log("Response:", response.data.choices[0].message);
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    console.error(
+      "Error:",
+      error.response ? error.response.data : error.message
+    );
+  }
+};
 
 // Route to get phrases
-app.get("/getPhrases", (req, res) => {
-  res.json({ phrases: phrasesData });
+app.get("/getPhrases/:language", async (req, res) => {
+  const language = req.params.language;
+  const requestData = {
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "user",
+        content: `Suggest 9 phrases simple ${language} and english translate. Only output JSON and nothing else`,
+      },
+    ],
+    temperature: 0.7,
+  };
+
+  const response = await getResponse(requestData);
+  const responseObject = JSON.parse(response);
+  res.json({ responseObject });
 });
 
 // Route to get a response based on an ID
-app.get("/getResponse/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const phrase = phrasesData.find((p) => p.id === id);
-
-  if (phrase) {
-    res.json({ response: phrase });
-  } else {
-    res.status(404).json({ error: "Phrase not found" });
-  }
+app.get("/getResponse", async (req, res) => {
+  const answer = req.query.answer;
+  const question = req.query.question;
+  const requestData = {
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "user",
+        content: `Is "${answer}" a good and suitable response to "${question}"? yes or no only`,
+      },
+    ],
+    temperature: 0.7,
+  };
+  const response = await getResponse(requestData);
+  res.json({ response });
 });
 
 // Start the server
